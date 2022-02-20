@@ -14,11 +14,16 @@ public class Solution {
             System.out.printf("Case #%d: %s%n",iCase,result);
         }
     }
+    // TC: O(logN)
+    // SC: O(1)
     private BigInteger solve(BigInteger preYear) {
 //        System.out.printf("%npreYear:%s%n",preYear);
         BigInteger result = BigInteger.ZERO;
         int length = preYear.toString().length();
         int n = length;
+
+        // 시작 숫자의 자릿수
+
         for(int i=1;i<=9;i++){
             StringBuilder rightSb = new StringBuilder();
             StringBuilder leftSb = new StringBuilder("1");
@@ -28,21 +33,19 @@ public class Solution {
                     leftSb.append("0");
                 }
             }
-//            int curN = length/i+(length%i>0?1:0);
+            // 몇개 이어붙일지
+
             for(int curN=2;curN<=18;curN++){
-//            int curN = length/i+(length%i>0?1:0);
 
                 BigInteger right = new BigInteger(rightSb.toString());
                 BigInteger left = new BigInteger(leftSb.toString());
-//                System.out.printf("start N:%d, start right:%s, start left:%s%n",curN,right,left);
                 if(curN<2){
                     continue;
                 }
+                //
                 while(left.compareTo(right)<=0){
                     BigInteger mid = left.add(right).divide(BigInteger.TWO);
-//                    BigInteger cur = makeRoaringNum(mid,curN+correction4N);
                     BigInteger cur = makeRoaringNum(mid,curN);
-//                    System.out.printf("mid:%s left:%s, right:%s, preYear:%s curNum:%s compare:%d%n",mid,left,right,preYear,cur,preYear.compareTo(cur));
                     if(preYear.compareTo(cur)<0) {
                         right = mid.subtract(BigInteger.ONE);
                         if(result.compareTo(BigInteger.ZERO)==0){

@@ -20,8 +20,11 @@ public class Solution {
         }
 
     }
+    // TC : O(N log N)
+    // SC : O(1)
     private double solve(int N, int K, int[] tickets) {
 
+        /* */
         Arrays.sort(tickets);
         PriorityQueue<Integer> diffs = new PriorityQueue<>();
 //        System.out.printf("%nN=%d,K=%d,%s%n",N,K,Arrays.toString(tickets));
